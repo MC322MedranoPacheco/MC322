@@ -60,10 +60,13 @@ public class Sala {
 	}
 	
 	public void removerComponente(String componente) {
+		private Componente removido;
 		for (int i = 0; i < numComponentes; i++)
 			if (componentes[i].toString() == componente)
+				removido = componentes[i];
 				componentes[i] = null;
-		numComponentes--;	
+		numComponentes--;
+		return removido;
 	}
 }
 	
