@@ -1,10 +1,13 @@
-package l05wumpus;
+package pt.c40task.l05wumpus;
 
 public class Caverna {
 
-	public boolean[][] salas;
+	public Sala[][] salas;
 
-	public void moverComponente(Posicao posicaoFinal) {
+	public void moverComponente(String componente, Posicao posicaoInicial, Posicao posicaoFinal) {
+		private Componente mudado;
+		mudado = salas[posicaoInicial.getPosicaoY()][posicaoInicial.getPosicaoX()].removerComponente(componente);
+		salas[posicaoFinal.getPosicaoY()][posicaoFinal.getPosicaoX()].adicionarComponente(mudado);
 	}
 
 }
