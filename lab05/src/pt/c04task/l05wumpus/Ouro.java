@@ -1,5 +1,4 @@
-package l05wumpus
-;
+package pt.c40task.l05wumpus;
 
 public class Ouro extends Componente{
 
