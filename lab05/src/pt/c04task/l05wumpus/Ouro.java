@@ -1,0 +1,13 @@
+package l05wumpus
+;
+
+public class Ouro extends Componente{
+
+	public Ouro(int x, int y) {
+		super(x, y);
+	}
+
+	public String toString() {
+		return "O";
+	}
+}
