@@ -1,6 +1,6 @@
 package pt.c40task.l05wumpus;
 
-public class Heroi extends Componentes{
+public class Heroi extends Componente{
 	private boolean flecha = true;
 	private boolean equipado = false;
 	private boolean ouro = false;
@@ -11,7 +11,7 @@ public class Heroi extends Componentes{
 	}
 	
 	public void moverHeroi(Posicao posicaoFinal) {
-		caverna.moverComponente(posicaoFinal);
+		caverna.moverComponente("H", this.posicao, posicaoFinal);
 	}
 	
 	public void setFlecha(boolean flecha) {
@@ -28,8 +28,8 @@ public class Heroi extends Componentes{
 	}
 	
 	public void pegarOuro() {
-		if(caverna.salas[posicao.getPosicaoY()][posicao.getPosicaoX()].procurarComponente("O")) {
-			caverna.salas[posicao.getPosicaoY()][posicao.getPosicaoX()].tirarComponente("O");
+		if(caverna.salas[posicao.getY()][posicao.getX()].procurarComponente("O")) { //RUIMZAO
+			caverna.salas[posicao.getY()][posicao.getX()].removerComponente("O");
 			ouro = true;
 		}
 	}
