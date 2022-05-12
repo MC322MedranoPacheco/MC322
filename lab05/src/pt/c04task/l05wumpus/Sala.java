@@ -26,7 +26,7 @@ public class Sala {
 			if (tipoPeca == "f")
 				return tipoPeca;
 		}
-		else return "b";
+		return "b";
 			
 	}
 	
@@ -36,12 +36,11 @@ public class Sala {
 			string = "-";
 		else if(numComponentes == 0)
 			string = "#";
-		else
-			string = componentes[0].toString();
+		else 
+			string = maiorPrioridade();
+			
 		return string;		
 	}
-	
-	// Adiciona um componente. O componente de maior prioridade fica sempre na primeira posicao
 	public void adicionarComponente(Componente componente) {
 		int i = 0;
 		while(componentes[i] != null)
@@ -59,13 +58,15 @@ public class Sala {
 		return bool;
 	}
 	
-	public void removerComponente(String componente) {
-		private Componente removido;
-		for (int i = 0; i < numComponentes; i++)
-			if (componentes[i].toString() == componente)
+	public Componente removerComponente(String componente) {
+		Componente removido = null;
+		for (int i = 0; i < numComponentes; i++) {
+			if (componentes[i].toString() == componente) {
 				removido = componentes[i];
 				componentes[i] = null;
+			}
 		numComponentes--;
+		}
 		return removido;
 	}
 }
