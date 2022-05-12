@@ -13,8 +13,8 @@ public abstract class Componente {
 	}
 
 	public void setPosicao(int x, int y) {
-		posicao.setPosicaoX(x);
-		posicao.setPosicaoY(y);
+		posicao.setX(x);
+		posicao.setY(y);
 	}
 
 	public abstract String toString();
