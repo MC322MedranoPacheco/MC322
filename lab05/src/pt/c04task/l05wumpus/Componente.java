@@ -1,7 +1,7 @@
 package pt.c40task.l05wumpus;
 
 public abstract class Componente {
-	public Posicao posicao;
+	public Posicao posicao = new Posicao(0, 0);
 	public Caverna caverna;
 
 	public Componente(int x, int y) {
