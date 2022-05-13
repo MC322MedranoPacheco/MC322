@@ -9,6 +9,5 @@ public class Buraco extends Componente{
 	public String toString() {
 		return "B";
 	}
-
 	
 }

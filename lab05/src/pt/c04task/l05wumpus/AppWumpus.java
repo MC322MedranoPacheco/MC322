@@ -20,8 +20,6 @@ public class AppWumpus {
     		  caverna.salas[i][j].descobrir();
       caverna.printCaverna();
       
-      caverna.printCaverna();
-      
       tk.stop();
    }
 

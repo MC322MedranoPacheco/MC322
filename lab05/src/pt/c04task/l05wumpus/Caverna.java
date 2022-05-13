@@ -24,7 +24,11 @@ public class Caverna {
 	public void moverComponente(String componente, Posicao posicaoInicial, Posicao posicaoFinal) {
 		Componente mudado;
 		mudado = salas[posicaoInicial.getY()][posicaoInicial.getX()].removerComponente(componente);
+		mudado.setPosicao(posicaoFinal.getX(), posicaoFinal.getY());
 		salas[posicaoFinal.getY()][posicaoFinal.getX()].adicionarComponente(mudado);
 	}
-
+	
+	public void adicionarComponente(Posicao posicao, Componente componente) {
+		salas[posicao.getY()][posicao.getX()].adicionarComponente(componente); 	
+	}
 }

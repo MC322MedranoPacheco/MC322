@@ -13,28 +13,28 @@ public class Sala {
 	
 	private String maiorPrioridade() {
 		String tipoPeca;
-		for (int i = 0; i < numComponentes; i++) {
+		for (int i = 0; i < 4; i++) {
 			if (componentes[i] != null) {
 				tipoPeca = componentes[i].toString();
 				if (tipoPeca == "W" || tipoPeca == "B" || tipoPeca == "O")
 					return tipoPeca;
 			}
 		}
-		for (int i = 0; i < numComponentes; i++) {
+		for (int i = 0; i < 4; i++) {
 			if (componentes[i] != null) {
 				tipoPeca = componentes[i].toString();
 				if (tipoPeca == "H")
 					return tipoPeca;
 			}
 		}
-		for (int i = 0; i < numComponentes; i++) {
+		for (int i = 0; i < 4; i++) {
 			if (componentes[i] != null) { 
 				tipoPeca = componentes[i].toString();
 				if (tipoPeca == "f")
 					return tipoPeca;
 			}
 		}
-		for (int i = 0; i < numComponentes; i++) {
+		for (int i = 0; i < 4; i++) {
 			if (componentes[i] != null) { 
 				tipoPeca = componentes[i].toString();
 				if (tipoPeca == "b")
@@ -66,8 +66,8 @@ public class Sala {
 	
 	public boolean procurarComponente(String componente) {
 		boolean bool = false;
-		for (int i = 0; i < numComponentes; i++) {
-			if(componentes[i].toString() == componente)
+		for (int i = 0; i < 4; i++) {
+			if(componentes[i] !=null && componentes[i].toString() == componente)
 				bool = true;
 			}
 		return bool;
@@ -75,8 +75,8 @@ public class Sala {
 	
 	public Componente removerComponente(String componente) {
 		Componente removido = null;
-		for (int i = 0; i < numComponentes; i++) {
-			if (componentes[i].toString() == componente) {
+		for (int i = 0; i < 4; i++) {
+			if (componentes[i] !=null && componentes[i].toString() == componente) {
 				removido = componentes[i];
 				componentes[i] = null;
 				numComponentes--;
@@ -85,4 +85,3 @@ public class Sala {
 		return removido;
 	}
 }
-	
