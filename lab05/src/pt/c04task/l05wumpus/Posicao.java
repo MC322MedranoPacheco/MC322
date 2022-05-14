@@ -18,4 +18,28 @@ public class Posicao {
 	public void setY(int y) {
 		this.y = y;
 	}
+	
+	public boolean Valida() {
+		return x >= 0 && x < 4 && y >= 0 && y < 4;
+	}
+	
+	public Posicao[] adjacentes_validos() {
+		Posicao cima = new Posicao(x, y - 1);
+		Posicao baixo = new Posicao(x, y + 1);
+		Posicao esquerda = new Posicao(x - 1, y);
+		Posicao direita = new Posicao(x + 1, y);
+		
+		Posicao adjacentes[] = new Posicao[4];
+		adjacentes[0] = cima;
+		adjacentes[1] = baixo;
+		adjacentes[2] = esquerda;
+		adjacentes[3] = direita;
+		
+		for(int i = 0; i < 4; i++) {
+			if(!adjacentes[i].Valida())
+				adjacentes[i] = null;
+		}
+		return adjacentes;
+	}
+	
 }
