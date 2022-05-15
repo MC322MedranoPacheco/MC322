@@ -12,7 +12,7 @@ public class Sala {
 		descoberta = true;
 	}
 	
-	private String maiorPrioridade() {
+	public String maiorPrioridade() {
 		String tipoPeca;
 		for (int i = 0; i < 4; i++) {
 			if (componentes[i] != null) {
@@ -77,12 +77,16 @@ public class Sala {
 	public Componente removerComponente(String componente) {
 		Componente removido = null;
 		for (int i = 0; i < 4; i++) {
-			if (componentes[i] !=null && componentes[i].toString() == componente) {
+			if (componentes[i] !=null && componentes[i].toString().equals(componente)) {
 				removido = componentes[i];
 				componentes[i] = null;
 				numComponentes--;
 			}
 		}
 		return removido;
+	}
+	
+	public Heroi getPrimeiro() {
+		return (Heroi) componentes[0]; // Depois a gente pensa num jeito melhor
 	}
 }

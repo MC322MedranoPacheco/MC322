@@ -7,11 +7,14 @@ public class Heroi extends Componente{
 	private boolean vivo = true;
 	
 	public Heroi(int x, int y, Caverna caverna) {
-		super(x,y, caverna);
+		super(x, y, caverna);
 	}
 	
 	public void moverHeroi(Posicao posicaoFinal) {
-		caverna.moverComponente("P", this.posicao, posicaoFinal);
+		if (posicaoFinal.Valida()) {
+			caverna.moverComponente("P", this.posicao, posicaoFinal);
+			caverna.getSala(posicaoFinal.getX(), posicaoFinal.getY()).descobrir();
+		}
 	}
 	
 	public void setFlecha(boolean flecha) {
@@ -28,8 +31,8 @@ public class Heroi extends Componente{
 	}
 	
 	public void pegarOuro() {
-		if(caverna.salas[posicao.getY()][posicao.getX()].procurarComponente("O")) { //RUIM
-			caverna.salas[posicao.getY()][posicao.getX()].removerComponente("O");
+		if(caverna.getSala(posicao.getX(), posicao.getY()).procurarComponente("O")) {
+			caverna.getSala(posicao.getX(), posicao.getY()).removerComponente("O");
 			ouro = true;
 		}
 	}
@@ -45,8 +48,6 @@ public class Heroi extends Componente{
 	public boolean getEquipado() {
 		return equipado;
 	}
-	
-	
 	
 	public String toString() {
 		return "P";

@@ -5,7 +5,7 @@ public abstract class Componente {
 	public Caverna caverna; // Sepa q isso podia ser static
 
 	public Componente(int x, int y, Caverna caverna) {
-		setPosicao(x,y);
+		setPosicao(x, y);
 		this.caverna = caverna;
 	}
 

@@ -33,9 +33,9 @@ public class MontadorCaverna {
 		        	 	numO++;
 		        	 	Componente ouro = new Ouro(Integer.parseInt(caverna_str[i][1]) - 1, Integer.parseInt(caverna_str[i][0]) - 1, caverna);		    	
 		        	 	caverna.adicionarComponente(pos, ouro);
-	        	 }
-	        			 
+	        	 }        			 
 		}
+	caverna.getSala(0, 0).descobrir();
 	return caverna;
 	}
 }

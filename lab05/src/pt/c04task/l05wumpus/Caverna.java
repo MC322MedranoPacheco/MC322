@@ -31,4 +31,8 @@ public class Caverna {
 	public void adicionarComponente(Posicao posicao, Componente componente) {
 		salas[posicao.getY()][posicao.getX()].adicionarComponente(componente); 	
 	}
+	
+	public Sala getSala(int x, int y) {
+		return salas[y][x]; 
+	}
 }

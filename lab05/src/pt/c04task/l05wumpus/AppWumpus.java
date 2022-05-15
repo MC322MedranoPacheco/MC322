@@ -15,15 +15,26 @@ public class AppWumpus {
       
       Caverna caverna = new Caverna();
       caverna = MontadorCaverna.montar(arquivoCaverna, arquivoSaida, arquivoMovimentos);
-      for (int i = 0; i < 4; i ++)
-    	  for (int j = 0; j < 4; j++)
-    		  caverna.salas[i][j].descobrir();
-      Posicao pos = new Posicao(0, 1);
-      Posicao pos1 = new Posicao(0,0);
+      ControleJogo controle = new ControleJogo(caverna.getSala(0, 0).getPrimeiro());
       
-      caverna.moverComponente("P", pos1, pos);
       caverna.printCaverna();
+
+      controle.movimento("d");
+      caverna.printCaverna();
+      System.out.println("");
       
+      controle.movimento("d");
+      caverna.printCaverna();
+      System.out.println("");
+      
+      controle.movimento("s");
+      caverna.printCaverna();
+      System.out.println("");
+      
+      controle.movimento("c");
+      caverna.printCaverna();
+      System.out.println("");
+       
       tk.stop();
    }
 
