@@ -24,7 +24,7 @@ public class Sala {
 		for (int i = 0; i < 4; i++) {
 			if (componentes[i] != null) {
 				tipoPeca = componentes[i].toString();
-				if (tipoPeca == "H")
+				if (tipoPeca == "P")
 					return tipoPeca;
 			}
 		}

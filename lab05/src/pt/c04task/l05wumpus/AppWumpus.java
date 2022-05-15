@@ -18,6 +18,10 @@ public class AppWumpus {
       for (int i = 0; i < 4; i ++)
     	  for (int j = 0; j < 4; j++)
     		  caverna.salas[i][j].descobrir();
+      Posicao pos = new Posicao(0, 1);
+      Posicao pos1 = new Posicao(0,0);
+      
+      caverna.moverComponente("P", pos1, pos);
       caverna.printCaverna();
       
       tk.stop();

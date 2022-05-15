@@ -16,24 +16,25 @@ public class MontadorCaverna {
 				 Posicao pos = new Posicao(Integer.parseInt(caverna_str[i][1]) - 1, Integer.parseInt(caverna_str[i][0]) - 1);
 	        	 if(caverna_str[i][2].equals("P")) {
 	        		 numH++;
-	        		 Componente heroi = new Heroi(Integer.parseInt(caverna_str[i][1]), Integer.parseInt(caverna_str[i][0]));
+	        		 Componente heroi = new Heroi(Integer.parseInt(caverna_str[i][1]) - 1, Integer.parseInt(caverna_str[i][0]) - 1, caverna);
 	        		 caverna.adicionarComponente(pos, heroi);
 	        	 }
 	        	 else if(caverna_str[i][2].equals("W")) {
 		        	 	numW++;
-		        	 	Componente wumpus = new Wumpus(Integer.parseInt(caverna_str[i][1]), Integer.parseInt(caverna_str[i][0]));
+		        	 	Componente wumpus = new Wumpus(Integer.parseInt(caverna_str[i][1]) - 1, Integer.parseInt(caverna_str[i][0]) - 1, caverna);
 		        	 	caverna.adicionarComponente(pos, wumpus);
 	        	 }
 	        	 else if(caverna_str[i][2].equals("B")) {
 		        	 	numB++;
-		        	 	Componente buraco = new Buraco(Integer.parseInt(caverna_str[i][1]), Integer.parseInt(caverna_str[i][0]));
+		        	 	Componente buraco = new Buraco(Integer.parseInt(caverna_str[i][1]) - 1, Integer.parseInt(caverna_str[i][0]) - 1, caverna);
 		        	 	caverna.adicionarComponente(pos, buraco);
 		         }
 	        	 else if(caverna_str[i][2].equals("O")) {
 		        	 	numO++;
-		        	 	Componente ouro = new Ouro(Integer.parseInt(caverna_str[i][1]), Integer.parseInt(caverna_str[i][0]));
+		        	 	Componente ouro = new Ouro(Integer.parseInt(caverna_str[i][1]) - 1, Integer.parseInt(caverna_str[i][0]) - 1, caverna);		    	
 		        	 	caverna.adicionarComponente(pos, ouro);
 	        	 }
+	        			 
 		}
 	return caverna;
 	}
