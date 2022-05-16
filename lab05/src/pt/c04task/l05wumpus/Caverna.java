@@ -1,7 +1,8 @@
 package pt.c40task.l05wumpus;
 
 public class Caverna {
-	
+	 
+	// fazer um get sala por posicao
 
 	public Sala[][] salas = new Sala[4][4];
 	
