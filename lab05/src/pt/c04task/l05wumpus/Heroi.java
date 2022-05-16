@@ -6,9 +6,11 @@ public class Heroi extends Componente{
 	private boolean ouro = false;
 	private boolean vivo = true;
 	
-	public Heroi(int x, int y, Caverna caverna) {
-		super(x, y, caverna);
+	public Heroi(int x, int y) {
+		super(x, y);
 	}
+	
+	
 	
 	public void moverHeroi(Posicao posicaoFinal) {
 		if (posicaoFinal.Valida()) {
