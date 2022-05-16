@@ -1,9 +1,12 @@
 package pt.c40task.l05wumpus;
 
 public class MontadorCaverna {
+	
 	public static Caverna montar(String arquivoCaverna, String arquivoSaida,
             String arquivoMovimentos) {
+		
 		Caverna caverna = new Caverna();
+		Componente.setCaverna(caverna);
 		Toolkit tk = Toolkit.start(arquivoCaverna, arquivoSaida, arquivoMovimentos);
 		String caverna_str[][] = tk.retrieveCave();
 		
@@ -16,26 +19,27 @@ public class MontadorCaverna {
 				 Posicao pos = new Posicao(Integer.parseInt(caverna_str[i][1]) - 1, Integer.parseInt(caverna_str[i][0]) - 1);
 	        	 if(caverna_str[i][2].equals("P")) {
 	        		 numH++;
-	        		 Componente heroi = new Heroi(Integer.parseInt(caverna_str[i][1]) - 1, Integer.parseInt(caverna_str[i][0]) - 1, caverna);
-	        		 caverna.adicionarComponente(pos, heroi);
+	        		 caverna.getSala(Integer.parseInt(caverna_str[i][1]) - 1, Integer.parseInt(caverna_str[i][0]) - 1).descobrir();
+	        		 Componente heroiCaverna = ControleJogo.getHeroi();
+	        		 heroiCaverna.setPosicao(Integer.parseInt(caverna_str[i][1]) - 1, Integer.parseInt(caverna_str[i][0]) - 1);
+	        		 caverna.adicionarComponente(pos, heroiCaverna);
 	        	 }
 	        	 else if(caverna_str[i][2].equals("W")) {
 		        	 	numW++;
-		        	 	Componente wumpus = new Wumpus(Integer.parseInt(caverna_str[i][1]) - 1, Integer.parseInt(caverna_str[i][0]) - 1, caverna);
+		        	 	Componente wumpus = new Wumpus(Integer.parseInt(caverna_str[i][1]) - 1, Integer.parseInt(caverna_str[i][0]) - 1);
 		        	 	caverna.adicionarComponente(pos, wumpus);
 	        	 }
 	        	 else if(caverna_str[i][2].equals("B")) {
 		        	 	numB++;
-		        	 	Componente buraco = new Buraco(Integer.parseInt(caverna_str[i][1]) - 1, Integer.parseInt(caverna_str[i][0]) - 1, caverna);
+		        	 	Componente buraco = new Buraco(Integer.parseInt(caverna_str[i][1]) - 1, Integer.parseInt(caverna_str[i][0]) - 1);
 		        	 	caverna.adicionarComponente(pos, buraco);
 		         }
 	        	 else if(caverna_str[i][2].equals("O")) {
 		        	 	numO++;
-		        	 	Componente ouro = new Ouro(Integer.parseInt(caverna_str[i][1]) - 1, Integer.parseInt(caverna_str[i][0]) - 1, caverna);		    	
+		        	 	Componente ouro = new Ouro(Integer.parseInt(caverna_str[i][1]) - 1, Integer.parseInt(caverna_str[i][0]) - 1);		    	
 		        	 	caverna.adicionarComponente(pos, ouro);
 	        	 }        			 
 		}
-	caverna.getSala(0, 0).descobrir();
 	return caverna;
 	}
 }
