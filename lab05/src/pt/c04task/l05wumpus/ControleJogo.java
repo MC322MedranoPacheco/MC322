@@ -1,12 +1,16 @@
 package pt.c40task.l05wumpus;
 
-public class ControleJogo {
-	Heroi heroi;
-	public ControleJogo(Heroi heroi) {
-		this.heroi = heroi;
+public class ControleJogo { 
+	private static Heroi heroi = new Heroi(0,0);
+	
+	private ControleJogo(){
 	}
 	
-	public void movimento(String comando) {
+	public static Heroi getHeroi() {
+		return heroi;
+	}
+	
+	public static void movimento(String comando) {
 		Posicao posDest = new Posicao(heroi.getPosicao().getX(), heroi.getPosicao().getY());
 		switch (comando) {
 		case "w":
