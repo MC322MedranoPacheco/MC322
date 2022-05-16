@@ -2,11 +2,10 @@ package pt.c40task.l05wumpus;
 
 public abstract class Componente {
 	public Posicao posicao = new Posicao(0, 0);
-	public Caverna caverna; // Sepa q isso podia ser static
+	public static Caverna caverna; // Sepa q isso podia ser static
 
-	public Componente(int x, int y, Caverna caverna) {
+	public Componente(int x, int y) {
 		setPosicao(x, y);
-		this.caverna = caverna;
 	}
 
 	public Posicao getPosicao() {
@@ -18,8 +17,8 @@ public abstract class Componente {
 		posicao.setY(y);
 	}
 
-	public void setCaverna(Caverna caverna) {
-		this.caverna = caverna;
+	public static void setCaverna(Caverna caverna) {
+		Componente.caverna = caverna;
 	}
 	
 	public abstract String toString();
