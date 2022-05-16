@@ -1,4 +1,3 @@
-
 package pt.c40task.l05wumpus;
 
 public class Sala {
@@ -86,7 +85,5 @@ public class Sala {
 		return removido;
 	}
 	
-	public Heroi getPrimeiro() {
-		return (Heroi) componentes[0]; // Depois a gente pensa num jeito melhor
-	}
+
 }
