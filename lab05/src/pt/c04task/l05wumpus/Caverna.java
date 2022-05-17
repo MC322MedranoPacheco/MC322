@@ -22,6 +22,15 @@ public class Caverna {
 		}
 	}
 	
+	public char[][] montaMatriz() {
+		char[][] matriz = new char[4][4];
+		for (int i = 0; i < 4; i++) {
+			for(int k = 0; k < 4; k++)
+				matriz[i][k] = salas[i][k].toString().charAt(0);
+		}
+		return matriz;
+	}
+	
 	public void moverComponente(String componente, Posicao posicaoInicial, Posicao posicaoFinal) {
 		Componente mudado;
 		mudado = salas[posicaoInicial.getY()][posicaoInicial.getX()].removerComponente(componente);

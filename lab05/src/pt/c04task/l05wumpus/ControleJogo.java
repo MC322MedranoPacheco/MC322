@@ -3,7 +3,7 @@ package pt.c40task.l05wumpus;
 public class ControleJogo { 
 	private static Heroi heroi = new Heroi(0,0);
 	private static int pontuacao = 0;
-	public static char estadoJogo = 'n';
+	public static char estadoJogo = 'P';
 	public static String nome;
 	
 	private ControleJogo(){
@@ -27,36 +27,36 @@ public class ControleJogo {
 		case "w":
 			posDest.setY(posDest.getY() - 1);
 			pontuacao += heroi.moverHeroi(posDest);
-			if(!heroi.getVivo()) estadoJogo = 'p';
+			if(!heroi.getVivo()) estadoJogo = 'L';
 			else if(heroi.ganhou()) { 
-				estadoJogo = 'g';
+				estadoJogo = 'W';
 				pontuacao += 1000;
 			}
 			break;
 		case "d":	
 			posDest.setX(posDest.getX() + 1);
 			pontuacao += heroi.moverHeroi(posDest);
-			if(!heroi.getVivo()) estadoJogo = 'p';
+			if(!heroi.getVivo()) estadoJogo = 'L';
 			else if(heroi.ganhou()) { 
-				estadoJogo = 'g';
+				estadoJogo = 'W';
 				pontuacao += 1000;
 			}
 			break;
 		case "a":	
 			posDest.setX(posDest.getX() - 1);
 			pontuacao += heroi.moverHeroi(posDest);
-			if(!heroi.getVivo()) estadoJogo = 'p';
+			if(!heroi.getVivo()) estadoJogo = 'L';
 			else if(heroi.ganhou()) { 
-				estadoJogo = 'g';
+				estadoJogo = 'W';
 				pontuacao += 1000;
 			}
 			break;
 		case "s":	
 			posDest.setY(posDest.getY() + 1);
 			pontuacao += heroi.moverHeroi(posDest);
-			if(!heroi.getVivo()) estadoJogo = 'p';
+			if(!heroi.getVivo()) estadoJogo = 'L';
 			else if(heroi.ganhou()) { 
-				estadoJogo = 'g';
+				estadoJogo = 'W';
 				pontuacao += 1000;
 			}
 			break;

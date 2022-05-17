@@ -13,39 +13,48 @@ public class AppWumpus {
    
    public static void executaJogo(String arquivoCaverna, String arquivoSaida,
                                   String arquivoMovimentos) {
-      Toolkit tk = Toolkit.start(arquivoCaverna, arquivoSaida, arquivoMovimentos);
+	  Toolkit tk = Toolkit.start(arquivoCaverna, arquivoSaida, arquivoMovimentos);
       
       Caverna caverna = new Caverna();
       caverna = MontadorCaverna.montar(arquivoCaverna, arquivoSaida, arquivoMovimentos);
       Scanner keyboard = new Scanner(System.in);
+      String comandos = tk.retrieveMovements();    
       
-      System.out.println("Escreva o seu nome:");
-      String nome = keyboard.nextLine();
-      ControleJogo.setNome(nome);
-      
-      caverna.printCaverna();
-      System.out.println("Player: " + ControleJogo.getNome());
-      System.out.printf("Score: %d\n", ControleJogo.getPontuacao());
-      
-      while(ControleJogo.getEstadoJogo() == 'n') {
-    	  String comando = keyboard.nextLine();
-    	  ControleJogo.movimento(comando);
-    	  caverna.printCaverna();
-          System.out.println("Player: " + ControleJogo.getNome());
-          System.out.printf("Score: %d\n", ControleJogo.getPontuacao());
-      }   		  
-      
-      switch (ControleJogo.getEstadoJogo()) {
-    	  case 'q':
-    		  System.out.println("Volte Sempre !");
-    		  break;
-    	  case 'p':
-    		  System.out.println("Voce perdeu =( ...");
-    		  break;
-    	  case 'g':
-    		  System.out.println("Voce ganhou =D !!!");
-    		  break;
+      if(comandos.equals("")) {
+	      System.out.println("Escreva o seu nome:");
+	      String nome = keyboard.nextLine();
+	      ControleJogo.setNome(nome);
+	      
+	      caverna.printCaverna();
+	      System.out.println("Player: " + ControleJogo.getNome());
+	      System.out.printf("Score: %d\n", ControleJogo.getPontuacao());
+	      
+	      while(ControleJogo.getEstadoJogo() == 'P') {
+	    	  String comando = keyboard.nextLine();
+	    	  ControleJogo.movimento(comando);
+	    	  caverna.printCaverna();
+	          System.out.println("Player: " + ControleJogo.getNome());
+	          System.out.printf("Score: %d\n", ControleJogo.getPontuacao());
+	      }   		  
+	      
+	      switch (ControleJogo.getEstadoJogo()) {
+	    	  case 'q':
+	    		  System.out.println("Volte Sempre !");
+	    		  break;
+	    	  case 'L':
+	    		  System.out.println("Voce perdeu =( ...");
+	    		  break;
+	    	  case 'W':
+	    		  System.out.println("Voce ganhou =D !!!");
+	    		  break;
+	      }
       }
+	  else {
+		  for (int i = 0; i < comandos.length(); i++) {
+			  tk.writeBoard(caverna.montaMatriz(), ControleJogo.getPontuacao(), ControleJogo.getEstadoJogo());
+			  ControleJogo.movimento(comandos.substring(i, i + 1));
+		  }
+	  }
       tk.stop();
    }
 

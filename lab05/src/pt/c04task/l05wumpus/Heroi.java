@@ -21,9 +21,13 @@ public class Heroi extends Componente{
 	
 	public int moverHeroi(Posicao posicaoFinal) { // Retorna quantos pontos o heroi fez no movimento e movimenta ele
 		int pontos = 0;
-		if (posicaoFinal.Valida()) 
+		if (posicaoFinal.Valida()) {
 			caverna.getSala(posicaoFinal.getX(), posicaoFinal.getY()).descobrir();
-		if(!posicaoFinal.Valida());
+			caverna.moverComponente("P", this.posicao, posicaoFinal);
+		}
+		if(!posicaoFinal.Valida()) {
+			pontos += 15;
+		}
 		else if(caverna.getSala(posicaoFinal.getX(), posicaoFinal.getY()).toString().equals("B")) {
 			vivo = false;
 			pontos -= 1000;
@@ -47,7 +51,6 @@ public class Heroi extends Componente{
 			pontos -= 100;
 			equipado = false;
 		}
-		caverna.moverComponente("P", this.posicao, posicaoFinal);
 		return pontos;
 	}
 	
