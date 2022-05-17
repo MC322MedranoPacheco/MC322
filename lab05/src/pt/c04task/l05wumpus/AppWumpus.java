@@ -1,5 +1,7 @@
 package pt.c40task.l05wumpus;
 
+import java.util.Scanner;
+
 public class AppWumpus {
 
    public static void main(String[] args) {
@@ -15,25 +17,35 @@ public class AppWumpus {
       
       Caverna caverna = new Caverna();
       caverna = MontadorCaverna.montar(arquivoCaverna, arquivoSaida, arquivoMovimentos);
+      Scanner keyboard = new Scanner(System.in);
+      
+      System.out.println("Escreva o seu nome:");
+      String nome = keyboard.nextLine();
+      ControleJogo.setNome(nome);
       
       caverna.printCaverna();
-
-      ControleJogo.movimento("d");
-      caverna.printCaverna();
-      System.out.println("");
+      System.out.println("Player: " + ControleJogo.getNome());
+      System.out.printf("Score: %d\n", ControleJogo.getPontuacao());
       
-      ControleJogo.movimento("d");
-      caverna.printCaverna();
-      System.out.println("");
+      while(ControleJogo.getEstadoJogo() == 'n') {
+    	  String comando = keyboard.nextLine();
+    	  ControleJogo.movimento(comando);
+    	  caverna.printCaverna();
+          System.out.println("Player: " + ControleJogo.getNome());
+          System.out.printf("Score: %d\n", ControleJogo.getPontuacao());
+      }   		  
       
-      ControleJogo.movimento("s");
-      caverna.printCaverna();
-      System.out.println("");
-      
-      ControleJogo.movimento("c");
-      caverna.printCaverna();
-      System.out.println("");
-       
+      switch (ControleJogo.getEstadoJogo()) {
+    	  case 'q':
+    		  System.out.println("Volte Sempre !");
+    		  break;
+    	  case 'p':
+    		  System.out.println("Voce perdeu =( ...");
+    		  break;
+    	  case 'g':
+    		  System.out.println("Voce ganhou =D !!!");
+    		  break;
+      }
       tk.stop();
    }
 
