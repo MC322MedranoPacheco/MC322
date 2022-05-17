@@ -1,4 +1,5 @@
 package pt.c40task.l05wumpus;
+import java.util.Random;
 
 public class Heroi extends Componente{
 	private boolean flecha = true;
@@ -13,30 +14,41 @@ public class Heroi extends Componente{
 	private static boolean combate() {
 		Random rand = new Random();
 		boolean venceu = false;
-		if(rand.nextInt(1) == 1)
+		if(rand.nextInt(2) == 1)
 			venceu = true;
 		return venceu;
 	}
 	
-	public void moverHeroi(Posicao posicaoFinal) {
-		if (!posicaoFinal.Valida()) 
-			;
-		else if(caverna.getSala(posicaoFinal.getX(), posicaoFinal.getY()).toString().equals("B"))
+	public int moverHeroi(Posicao posicaoFinal) { // Retorna quantos pontos o heroi fez no movimento e movimenta ele
+		int pontos = 0;
+		if (posicaoFinal.Valida()) 
+			caverna.getSala(posicaoFinal.getX(), posicaoFinal.getY()).descobrir();
+		if(!posicaoFinal.Valida());
+		else if(caverna.getSala(posicaoFinal.getX(), posicaoFinal.getY()).toString().equals("B")) {
 			vivo = false;
-		else if(caverna.getSala(posicaoFinal.getX(), posicaoFinal.getY()).toString().equals("W") && equipado == false)
+			pontos -= 1000;
+		}
+		else if(caverna.getSala(posicaoFinal.getX(), posicaoFinal.getY()).toString().equals("W") && equipado == false) {
 			vivo = false;
+			pontos -= 1000;
+		}
 		else if(caverna.getSala(posicaoFinal.getX(), posicaoFinal.getY()).toString().equals("W") && equipado == true) {
-			if(!combate())
+			if(!combate()) {
 				vivo = false;
+				pontos -= 1000;
+			}
 			else {
-				caverna.moverComponente("P", this.posicao, posicaoFinal);
-				caverna.getSala(posicaoFinal.getX(), posicaoFinal.getY()).descobrir();
+				pontos += 500;
+				caverna.getSala(posicaoFinal.getX(), posicaoFinal.getY()).removerComponente("W");
 			}
 		}
-		else {
-			caverna.moverComponente("P", this.posicao, posicaoFinal);
-			caverna.getSala(posicaoFinal.getX(), posicaoFinal.getY()).descobrir();
+		pontos -= 15;
+		if (equipado == true) {
+			pontos -= 100;
+			equipado = false;
 		}
+		caverna.moverComponente("P", this.posicao, posicaoFinal);
+		return pontos;
 	}
 	
 	public void setFlecha(boolean flecha) {
@@ -75,5 +87,9 @@ public class Heroi extends Componente{
 		return "P";
 	}
 	
+	public boolean ganhou() {
+		if (posicao.getX() == 0 && posicao.getY() == 0 && ouro) return true;
+		return false;
+	}
 	
 }
