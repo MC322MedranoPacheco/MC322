@@ -10,10 +10,30 @@ public class Heroi extends Componente{
 		super(x, y);
 	}
 	
-	
+	private static boolean combate() {
+		Random rand = new Random();
+		boolean venceu = false;
+		if(rand.nextInt(1) == 1)
+			venceu = true;
+		return venceu;
+	}
 	
 	public void moverHeroi(Posicao posicaoFinal) {
-		if (posicaoFinal.Valida()) {
+		if (!posicaoFinal.Valida()) 
+			;
+		else if(caverna.getSala(posicaoFinal.getX(), posicaoFinal.getY()).toString().equals("B"))
+			vivo = false;
+		else if(caverna.getSala(posicaoFinal.getX(), posicaoFinal.getY()).toString().equals("W") && equipado == false)
+			vivo = false;
+		else if(caverna.getSala(posicaoFinal.getX(), posicaoFinal.getY()).toString().equals("W") && equipado == true) {
+			if(!combate())
+				vivo = false;
+			else {
+				caverna.moverComponente("P", this.posicao, posicaoFinal);
+				caverna.getSala(posicaoFinal.getX(), posicaoFinal.getY()).descobrir();
+			}
+		}
+		else {
 			caverna.moverComponente("P", this.posicao, posicaoFinal);
 			caverna.getSala(posicaoFinal.getX(), posicaoFinal.getY()).descobrir();
 		}
