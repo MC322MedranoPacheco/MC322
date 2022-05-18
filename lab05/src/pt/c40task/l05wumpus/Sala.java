@@ -39,7 +39,7 @@ public class Sala {
 		numComponentes++;
 	}
 	
-	/* Verifica se um componente, que é representado por uma String, esta na sala*/
+	/* Verifica se um componente, que Ã© representado por uma String, esta na sala*/
 	public boolean procurarComponente(String componente) {
 		boolean bool = false;
 		for (int i = 0; i < 4; i++) {
@@ -49,7 +49,7 @@ public class Sala {
 		return bool;
 	}
 	
-	/* Remove um componente da sala */
+	/* Remove um componente da sala retornando o mesmo */
 	public Componente removerComponente(String componente) {
 		Componente removido = null;
 		for (int i = 0; i < 4; i++) {
