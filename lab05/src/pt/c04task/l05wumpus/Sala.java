@@ -13,11 +13,11 @@ public class Sala {
 	
 	public String toString() {
 		String string;
-		if (!descoberta)
+		if (!descoberta) // Caso a sala nao esteja descoberta, a string passa a ser "-"
 			string = "-";
-		else if(numComponentes == 0)
+		else if(numComponentes == 0) // Caso a sala esteja vazia, a string passa a ser "#"
 			string = "#";
-		else { 
+		else { // A string passa a ser o toString do componente de maior prioridade
 			int i = 0;
 			while (componentes[i] == null)
 				i++;
@@ -26,6 +26,7 @@ public class Sala {
 		return string;		
 	}
 	
+	/* Adiciona um componente na sua devida posicao do vetor */
 	public void adicionarComponente(Componente componente) {
 		if(componente.toString().equals("B") || componente.toString().equals("W") || componente.toString().equals("O"))
 			componentes[0] = componente;
@@ -38,6 +39,7 @@ public class Sala {
 		numComponentes++;
 	}
 	
+	/* Verifica se um componente, que é representado por uma String, esta na sala*/
 	public boolean procurarComponente(String componente) {
 		boolean bool = false;
 		for (int i = 0; i < 4; i++) {
@@ -47,6 +49,7 @@ public class Sala {
 		return bool;
 	}
 	
+	/* Remove um componente da sala */
 	public Componente removerComponente(String componente) {
 		Componente removido = null;
 		for (int i = 0; i < 4; i++) {

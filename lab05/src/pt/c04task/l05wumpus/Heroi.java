@@ -25,7 +25,11 @@ public class Heroi extends Componente{
 		return venceu;
 	}
 	
-	public int moverHeroi(Posicao posicaoFinal) { // Retorna quantos pontos o heroi fez no movimento e movimenta ele
+	/* Funcao realiza um movimento heroi para uma posicao final
+	 * retornando o quanto de pontos ele fez nesse movimento, as pontuaçoes de morte, movimentacao, atirar flecha
+	 * e matar o Wumpus
+	 */
+	public int moverHeroi(Posicao posicaoFinal) {
 		int pontos = 0;
 		if (posicaoFinal.Valida()) {
 			caverna.getSala(posicaoFinal).descobrir();
@@ -60,7 +64,7 @@ public class Heroi extends Componente{
 		return pontos;
 	}
 	
-	
+	/* Funcao que equipa uma flecha caso ela esteja disponivel */
 	public void setEquipado(boolean equipado) {
 		if(flecha) {
 			this.equipado = equipado;
@@ -73,8 +77,8 @@ public class Heroi extends Componente{
 	}
 	
 	public void pegarOuro() {
-		if(caverna.getSala(posicao).procurarComponente("O")) {
-			caverna.getSala(posicao).removerComponente("O");
+		if(caverna.getSala(posicao).procurarComponente("O")) { // Caso haja o ouro na sala, ele é removido e o boolean de ouro do heroi é atualizado
+			caverna.getSala(posicao).removerComponente("O"); 
 			ouro = true;
 		}
 	}
@@ -95,6 +99,7 @@ public class Heroi extends Componente{
 		return "P";
 	}
 	
+	/* Funcao que ve se o heroi ganhou o jogo */
 	public boolean ganhou() {
 		if (posicao.getX() == 0 && posicao.getY() == 0 && ouro) return true;
 		return false;

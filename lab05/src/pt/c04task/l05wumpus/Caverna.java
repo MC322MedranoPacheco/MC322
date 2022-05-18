@@ -6,6 +6,7 @@ public class Caverna {
 
 	public Sala[][] salas = new Sala[4][4];
 	
+	/* Cria a matriz de sala da caverna */
 	public Caverna() {
 		for(int i = 0; i < 4; i++) {
 			for(int j = 0; j < 4;j++) {
@@ -14,6 +15,7 @@ public class Caverna {
 		}
 	}
 	
+	/*Imprime a Caverna */
 	public void printCaverna() {
 		for (int i = 0; i < 4; i++) {
 			for(int k = 0; k < 4; k++)
@@ -31,13 +33,17 @@ public class Caverna {
 		return matriz;
 	}
 	
+	/* Dado um tipo de componente representado por uma string, uma posicao inicial e uma final,
+	 * Move o componente ate a posicao correta
+	 */
 	public void moverComponente(String componente, Posicao posicaoInicial, Posicao posicaoFinal) {
 		Componente mudado;
-		mudado = salas[posicaoInicial.getY()][posicaoInicial.getX()].removerComponente(componente);
-		mudado.setPosicao(posicaoFinal.getX(), posicaoFinal.getY());
-		salas[posicaoFinal.getY()][posicaoFinal.getX()].adicionarComponente(mudado);
+		mudado = salas[posicaoInicial.getY()][posicaoInicial.getX()].removerComponente(componente); // Remove o componente
+		mudado.setPosicao(posicaoFinal.getX(), posicaoFinal.getY()); //Atualiza a posicao
+		salas[posicaoFinal.getY()][posicaoFinal.getX()].adicionarComponente(mudado); // Realoca o componente
 	}
 	
+	// Adiciona determinado componente em uma posicao
 	public void adicionarComponente(Posicao posicao, Componente componente) {
 		salas[posicao.getY()][posicao.getX()].adicionarComponente(componente); 	
 	}

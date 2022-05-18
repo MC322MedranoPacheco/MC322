@@ -1,8 +1,11 @@
 package pt.c40task.l05wumpus;
 
+/* Classa abstrata que representa um componente,
+ * Sera herdada por tipos de componentes
+ */
 public abstract class Componente {
 	public Posicao posicao = new Posicao(0, 0);
-	public static Caverna caverna; // Sepa q isso podia ser static
+	public static Caverna caverna; 
 
 	public Componente(int x, int y) {
 		setPosicao(x, y);

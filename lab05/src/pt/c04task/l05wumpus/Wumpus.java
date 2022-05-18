@@ -8,7 +8,7 @@ public class Wumpus extends Componente{
 		for(int i = 0; i < 4; i++) {
 			if(adjacentes[i] != null) {
 				Componente fedor = new Fedor(adjacentes[i].getX(), adjacentes[i].getY());
-				caverna.adicionarComponente(adjacentes[i], fedor);
+				caverna.adicionarComponente(adjacentes[i], fedor); // Adiciona o fedor nas salas adjacentes
 			}
 		}
 	}
