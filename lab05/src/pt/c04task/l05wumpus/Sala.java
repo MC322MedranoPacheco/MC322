@@ -11,56 +11,30 @@ public class Sala {
 		descoberta = true;
 	}
 	
-	public String maiorPrioridade() {
-		String tipoPeca;
-		for (int i = 0; i < 4; i++) {
-			if (componentes[i] != null) {
-				tipoPeca = componentes[i].toString();
-				if (tipoPeca == "W" || tipoPeca == "B" || tipoPeca == "O")
-					return tipoPeca;
-			}
-		}
-		for (int i = 0; i < 4; i++) {
-			if (componentes[i] != null) {
-				tipoPeca = componentes[i].toString();
-				if (tipoPeca == "P")
-					return tipoPeca;
-			}
-		}
-		for (int i = 0; i < 4; i++) {
-			if (componentes[i] != null) { 
-				tipoPeca = componentes[i].toString();
-				if (tipoPeca == "f")
-					return tipoPeca;
-			}
-		}
-		for (int i = 0; i < 4; i++) {
-			if (componentes[i] != null) { 
-				tipoPeca = componentes[i].toString();
-				if (tipoPeca == "b")
-					return tipoPeca;
-			}
-		}
-		return "#";
-			
-	}
-	
 	public String toString() {
 		String string;
 		if (!descoberta)
 			string = "-";
 		else if(numComponentes == 0)
 			string = "#";
-		else 
-			string = maiorPrioridade();
-			
+		else { 
+			int i = 0;
+			while (componentes[i] == null)
+				i++;
+			string = componentes[i].toString();
+		}
 		return string;		
 	}
+	
 	public void adicionarComponente(Componente componente) {
-		int i = 0;
-		while(componentes[i] != null)
-			i++;
-		componentes[i] = componente;
+		if(componente.toString().equals("B") || componente.toString().equals("W") || componente.toString().equals("O"))
+			componentes[0] = componente;
+		else if(componente.toString().equals("P"))
+			componentes[1] = componente;
+		else if(componente.toString().equals("f"))
+			componentes[2] = componente;
+		else 
+			componentes[3] = componente;
 		numComponentes++;
 	}
 	
@@ -76,7 +50,7 @@ public class Sala {
 	public Componente removerComponente(String componente) {
 		Componente removido = null;
 		for (int i = 0; i < 4; i++) {
-			if (componentes[i] !=null && componentes[i].toString().equals(componente)) {
+			if (componentes[i] != null && componentes[i].toString().equals(componente)) {
 				removido = componentes[i];
 				componentes[i] = null;
 				numComponentes--;
@@ -84,6 +58,4 @@ public class Sala {
 		}
 		return removido;
 	}
-	
-
 }
