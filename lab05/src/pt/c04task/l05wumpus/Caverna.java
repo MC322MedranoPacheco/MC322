@@ -45,4 +45,8 @@ public class Caverna {
 	public Sala getSala(int x, int y) {
 		return salas[y][x]; 
 	}
+	
+	public Sala getSala(Posicao posicao) {
+		return getSala(posicao.getX(), posicao.getY());
+	}
 }
