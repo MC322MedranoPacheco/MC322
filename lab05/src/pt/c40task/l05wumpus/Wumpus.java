@@ -2,6 +2,7 @@ package pt.c40task.l05wumpus;
 
 public class Wumpus extends Componente{
 
+	/* construtor que coloca os componentes secundarios do mesmo nas salas corretas */
 	public Wumpus(int x, int y) {
 		super(x, y);
 		Posicao adjacentes[] = posicao.adjacentes_validos();
