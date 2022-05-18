@@ -11,11 +11,17 @@ public class Heroi extends Componente{
 		super(x, y);
 	}
 	
-	private static boolean combate() {
+	private boolean combate() {
 		Random rand = new Random();
 		boolean venceu = false;
 		if(rand.nextInt(2) == 1)
 			venceu = true;
+			Posicao adjacentes[] = this.posicao.adjacentes_validos();
+			for(int i = 0; i < 4; i++) {
+				if(adjacentes[i] != null) {
+					caverna.getSala(adjacentes[i].getX(), adjacentes[i].getY()).removerComponente("f");
+				}
+			}
 		return venceu;
 	}
 	
@@ -54,13 +60,12 @@ public class Heroi extends Componente{
 		return pontos;
 	}
 	
-	public void setFlecha(boolean flecha) {
-		this.flecha = flecha;
-	}
 	
 	public void setEquipado(boolean equipado) {
-		if(flecha)
+		if(flecha) {
 			this.equipado = equipado;
+			flecha = false;
+		}
 	}
 	
 	public void setVivo(boolean vivo) {
