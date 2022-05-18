@@ -30,6 +30,9 @@ public class Posicao {
 		return x >= 0 && x < 4 && y >= 0 && y < 4;
 	}
 	
+	/* funcao que verifica se as salas adjacentes sao casas validas e retorna num vetor
+	de posicoes as posicoes das mesmas caso sejam validas e null caso nao sejam */
+	
 	public Posicao[] adjacentes_validos() {
 		Posicao cima = new Posicao(x, y - 1);
 		Posicao baixo = new Posicao(x, y + 1);
