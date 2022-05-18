@@ -19,7 +19,7 @@ public class Heroi extends Componente{
 			Posicao adjacentes[] = this.posicao.adjacentes_validos();
 			for(int i = 0; i < 4; i++) {
 				if(adjacentes[i] != null) {
-					caverna.getSala(adjacentes[i].getX(), adjacentes[i].getY()).removerComponente("f");
+					caverna.getSala(adjacentes[i]).removerComponente("f");
 				}
 			}
 		return venceu;
@@ -28,28 +28,28 @@ public class Heroi extends Componente{
 	public int moverHeroi(Posicao posicaoFinal) { // Retorna quantos pontos o heroi fez no movimento e movimenta ele
 		int pontos = 0;
 		if (posicaoFinal.Valida()) {
-			caverna.getSala(posicaoFinal.getX(), posicaoFinal.getY()).descobrir();
+			caverna.getSala(posicaoFinal).descobrir();
 			caverna.moverComponente("P", this.posicao, posicaoFinal);
 		}
 		if(!posicaoFinal.Valida()) {
 			pontos += 15;
 		}
-		else if(caverna.getSala(posicaoFinal.getX(), posicaoFinal.getY()).toString().equals("B")) {
+		else if(caverna.getSala(posicaoFinal).toString().equals("B")) {
 			vivo = false;
 			pontos -= 1000;
 		}
-		else if(caverna.getSala(posicaoFinal.getX(), posicaoFinal.getY()).toString().equals("W") && equipado == false) {
+		else if(caverna.getSala(posicaoFinal).toString().equals("W") && equipado == false) {
 			vivo = false;
 			pontos -= 1000;
 		}
-		else if(caverna.getSala(posicaoFinal.getX(), posicaoFinal.getY()).toString().equals("W") && equipado == true) {
+		else if(caverna.getSala(posicaoFinal).toString().equals("W") && equipado == true) {
 			if(!combate()) {
 				vivo = false;
 				pontos -= 1000;
 			}
 			else {
 				pontos += 500;
-				caverna.getSala(posicaoFinal.getX(), posicaoFinal.getY()).removerComponente("W");
+				caverna.getSala(posicaoFinal).removerComponente("W");
 			}
 		}
 		pontos -= 15;
@@ -73,8 +73,8 @@ public class Heroi extends Componente{
 	}
 	
 	public void pegarOuro() {
-		if(caverna.getSala(posicao.getX(), posicao.getY()).procurarComponente("O")) {
-			caverna.getSala(posicao.getX(), posicao.getY()).removerComponente("O");
+		if(caverna.getSala(posicao).procurarComponente("O")) {
+			caverna.getSala(posicao).removerComponente("O");
 			ouro = true;
 		}
 	}
