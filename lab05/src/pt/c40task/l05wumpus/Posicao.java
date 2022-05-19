@@ -2,7 +2,7 @@ package pt.c40task.l05wumpus;
 
 /* Classe que representa uma posicao na caverna */
 public class Posicao {
-	int x, y;
+	private int x, y;
 	public Posicao(int x, int y) {
 		this.x = x;
 		this.y = y;

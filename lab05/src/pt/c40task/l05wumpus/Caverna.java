@@ -4,7 +4,7 @@ public class Caverna {
 	 
 	// fazer um get sala por posicao
 
-	public Sala[][] salas = new Sala[4][4];
+	private Sala[][] salas = new Sala[4][4];
 	
 	/* Cria a matriz de sala da caverna */
 	public Caverna() {

@@ -4,8 +4,8 @@ package pt.c40task.l05wumpus;
  * Sera herdada por tipos de componentes
  */
 public abstract class Componente {
-	public Posicao posicao = new Posicao(0, 0);
-	public static Caverna caverna; 
+	protected Posicao posicao = new Posicao(0, 0);
+	protected static Caverna caverna; 
 
 	public Componente(int x, int y) {
 		setPosicao(x, y);

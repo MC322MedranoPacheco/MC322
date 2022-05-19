@@ -4,8 +4,8 @@ package pt.c40task.l05wumpus;
 public class ControleJogo { 
 	private static Heroi heroi = new Heroi(0,0);
 	private static int pontuacao = 0;
-	public static char estadoJogo = 'P';
-	public static String nome;
+	private static char estadoJogo = 'P';
+	private static String nome;
 	
 	private ControleJogo(){
 	}

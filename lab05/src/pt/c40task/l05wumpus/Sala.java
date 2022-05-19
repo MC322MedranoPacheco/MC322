@@ -1,9 +1,9 @@
 package pt.c40task.l05wumpus;
 
 public class Sala {
-	public Componente[] componentes = new Componente[4];
-	public boolean descoberta = false;
-	public int numComponentes = 0;
+	private Componente[] componentes = new Componente[4];
+	private boolean descoberta = false;
+	private int numComponentes = 0;
 	
 	public Sala() {};
 	
