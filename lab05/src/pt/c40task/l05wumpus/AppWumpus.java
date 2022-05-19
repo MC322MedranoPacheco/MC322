@@ -1,74 +1,59 @@
 package pt.c40task.l05wumpus;
 
-public class MontadorCaverna {
-	
-	/* Funcao estatica que monta uma caverna a partir dos arquivos.
-	 * Alem disso, ela verifica se a caverna foi montada de maneira correta
-	 */
-	public static Caverna montar(String arquivoCaverna, String arquivoSaida,
-            String arquivoMovimentos) {
-		
-		Caverna caverna = new Caverna();
-		Componente.setCaverna(caverna);
-		Toolkit tk = Toolkit.start(arquivoCaverna, arquivoSaida, arquivoMovimentos);
-		String caverna_str[][] = tk.retrieveCave();
-		
-		int numB = 0;
-		int numW = 0;
-		int numH = 0;
-		int numO = 0;
-		
-		// Loop for que pega cada linha da tabela e adiciona o respectivo componente na sua posicao
-		
-			 Posicao posW;
-			 Posicao posO;
-			 Posicao posB1;
-			 Posicao posB2;
-			 Posicao posB3;
-			for (int i = 0; i < caverna_str.length; i++) {
-					 Posicao pos = new Posicao(Integer.parseInt(caverna_str[i][1]) - 1, Integer.parseInt(caverna_str[i][0]) - 1);
-		        	 if(caverna_str[i][2].equals("P")) {
-		        		 numH++;
-		        		 caverna.getSala(Integer.parseInt(caverna_str[i][1]) - 1, Integer.parseInt(caverna_str[i][0]) - 1).descobrir();
-		        	 	 Componente heroiCaverna = ControleJogo.getHeroi();
-		        		 heroiCaverna.setPosicao(Integer.parseInt(caverna_str[i][1]) - 1, Integer.parseInt(caverna_str[i][0]) - 1);
-		        		 caverna.adicionarComponente(pos, heroiCaverna);
-		        	 }
-		        	 else if(caverna_str[i][2].equals("W")) {
-			        	 	if(caverna.getSala(Integer.parseInt(caverna_str[i][1]) - 1, Integer.parseInt(caverna_str[i][0]) - 1).procurarComponente("B"))
-			        	 		throw new IllegalArgumentException("Tentou colocar Wumpus em sala com Buraco");
-			        	 	if(caverna.getSala(Integer.parseInt(caverna_str[i][1]) - 1, Integer.parseInt(caverna_str[i][0]) - 1).procurarComponente("O"))
-			        	 		throw new IllegalArgumentException("Tentou colocar Wumpus em sala com Ouro");
-			        	 	numW++;
-			        	 	Componente wumpus = new Wumpus(Integer.parseInt(caverna_str[i][1]) - 1, Integer.parseInt(caverna_str[i][0]) - 1);
-			        	 	caverna.adicionarComponente(pos, wumpus);
-		        	 }
-		        	 else if(caverna_str[i][2].equals("B")) {
-		        		 	if(caverna.getSala(Integer.parseInt(caverna_str[i][1]) - 1, Integer.parseInt(caverna_str[i][0]) - 1).procurarComponente("B"))
-			        	 		throw new IllegalArgumentException("Tentou colocar Buraco em sala com Buraco");
-			        	 	if(caverna.getSala(Integer.parseInt(caverna_str[i][1]) - 1, Integer.parseInt(caverna_str[i][0]) - 1).procurarComponente("O"))
-			        	 		throw new IllegalArgumentException("Tentou colocar Buraco em sala com Ouro");
-			        	 	if(caverna.getSala(Integer.parseInt(caverna_str[i][1]) - 1, Integer.parseInt(caverna_str[i][0]) - 1).procurarComponente("W"))
-			        	 		throw new IllegalArgumentException("Tentou colocar Buraco em sala com Wumpus");
-			        	 	numB++;
-			        	 	Componente buraco = new Buraco(Integer.parseInt(caverna_str[i][1]) - 1, Integer.parseInt(caverna_str[i][0]) - 1);
-			        	 	caverna.adicionarComponente(pos, buraco);
-			         }
-		        	 else if(caverna_str[i][2].equals("O")) {
-		        		 	if(caverna.getSala(Integer.parseInt(caverna_str[i][1]) - 1, Integer.parseInt(caverna_str[i][0]) - 1).procurarComponente("B"))
-			        	 		throw new IllegalArgumentException("Tentou colocar Ouro em sala com Buraco");
-			        	 	if(caverna.getSala(Integer.parseInt(caverna_str[i][1]) - 1, Integer.parseInt(caverna_str[i][0]) - 1).procurarComponente("W"))
-			        	 		throw new IllegalArgumentException("Tentou colocar Ouro em sala com Wumpus");
-			        	 	numO++;
-			        	 	Componente ouro = new Ouro(Integer.parseInt(caverna_str[i][1]) - 1, Integer.parseInt(caverna_str[i][0]) - 1);		    	
-			        	 	caverna.adicionarComponente(pos, ouro);
-		        	 }        			 
-			}
-			
-			if(numW != 1 || numO != 1 || numB < 2 || numB > 3)
-				throw new IllegalArgumentException("Numero de objetos difere do permitido");
-	
-		
-	return caverna;
-	}
-}
+import java.util.Scanner;
+
+public class AppWumpus {
+
+   public static void main(String[] args) {
+      AppWumpus.executaJogo(
+            (args.length > 0) ? args[0] : null,
+            (args.length > 1) ? args[1] : null,
+            (args.length > 2) ? args[2] : null);
+   }
+
+   public static void executaJogo(String arquivoCaverna, String arquivoSaida,
+                                  String arquivoMovimentos) {
+	  Toolkit tk = Toolkit.start(arquivoCaverna, arquivoSaida, arquivoMovimentos);
+
+      Caverna caverna = new Caverna();
+      caverna = MontadorCaverna.montar(arquivoCaverna, arquivoSaida, arquivoMovimentos);
+      Scanner keyboard = new Scanner(System.in);
+      String comandos = tk.retrieveMovements();    
+
+      if(comandos.equals("")) {
+	      System.out.println("Escreva o seu nome:");
+	      String nome = keyboard.nextLine();
+	      ControleJogo.setNome(nome);
+
+	      caverna.printCaverna();
+	      System.out.println("Player: " + ControleJogo.getNome());
+	      System.out.printf("Score: %d\n", ControleJogo.getPontuacao());
+
+	      while(ControleJogo.getEstadoJogo() == 'P') {
+	    	  String comando = keyboard.nextLine();
+	    	  ControleJogo.movimento(comando);
+	    	  caverna.printCaverna();
+	          System.out.println("Player: " + ControleJogo.getNome());
+	          System.out.printf("Score: %d\n", ControleJogo.getPontuacao());
+	      }   		  
+
+	      switch (ControleJogo.getEstadoJogo()) {
+	    	  case 'q':
+	    		  System.out.println("Volte Sempre !");
+	    		  break;
+	    	  case 'L':
+	    		  System.out.println("Voce perdeu =( ...");
+	    		  break;
+	    	  case 'W':
+	    		  System.out.println("Voce ganhou =D !!!");
+	    		  break;
+	      }
+      }
+	  else {
+		  for (int i = 0; i < comandos.length(); i++) {
+			  tk.writeBoard(caverna.montaMatriz(), ControleJogo.getPontuacao(), ControleJogo.getEstadoJogo());
+			  ControleJogo.movimento(comandos.substring(i, i + 1));
+		  }
+	  }
+      tk.stop();
+   }
