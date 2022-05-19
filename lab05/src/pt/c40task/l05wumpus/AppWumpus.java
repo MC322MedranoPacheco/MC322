@@ -50,10 +50,12 @@ public class AppWumpus {
 	      }
       }
 	  else {
-		  for (int i = 0; i < comandos.length(); i++) {
+		  for (int i = 0; i < comandos.length() - 1; i++) {
 			  tk.writeBoard(caverna.montaMatriz(), ControleJogo.getPontuacao(), ControleJogo.getEstadoJogo());
 			  ControleJogo.movimento(comandos.substring(i, i + 1));
 		  }
+		  tk.writeBoard(caverna.montaMatriz(), ControleJogo.getPontuacao(), ControleJogo.getEstadoJogo());
 	  }
       tk.stop();
    }
+}
