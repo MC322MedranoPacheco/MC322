@@ -60,7 +60,7 @@ public class MontadorCaverna {
 		        	 }        			 
 			}
 			
-			if(numW != 1 || numO != 1 || numB < 2 || numB > 3)
+			if(numW != 1 || numO != 1 || numB < 2 || numB > 3 || numH != 1)
 				throw new IllegalArgumentException("Numero de objetos difere do permitido");
 	
 		
