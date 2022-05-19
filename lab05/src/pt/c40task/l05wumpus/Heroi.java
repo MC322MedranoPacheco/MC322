@@ -26,40 +26,45 @@ public class Heroi extends Componente{
 	}
 	
 	/* Funcao realiza um movimento heroi para uma posicao final
-	 * retornando o quanto de pontos ele fez nesse movimento, as pontuaçoes de morte, movimentacao, atirar flecha
+	 * retornando o quanto de pontos ele fez nesse movimento, as pontuaÃ§oes de morte, movimentacao, atirar flecha
 	 * e matar o Wumpus
 	 */
 	public int moverHeroi(Posicao posicaoFinal) {
 		int pontos = 0;
-		if (posicaoFinal.Valida()) {
-			caverna.getSala(posicaoFinal).descobrir();
-			caverna.moverComponente("P", this.posicao, posicaoFinal);
-		}
-		if(!posicaoFinal.Valida()) {
-			pontos += 15;
-		}
-		else if(caverna.getSala(posicaoFinal).toString().equals("B")) {
-			vivo = false;
-			pontos -= 1000;
-		}
-		else if(caverna.getSala(posicaoFinal).toString().equals("W") && equipado == false) {
-			vivo = false;
-			pontos -= 1000;
-		}
-		else if(caverna.getSala(posicaoFinal).toString().equals("W") && equipado == true) {
-			if(!combate()) {
+		try {
+			if (posicaoFinal.Valida()) {
+				caverna.getSala(posicaoFinal).descobrir();
+				caverna.moverComponente("P", this.posicao, posicaoFinal);
+			}
+			if(!posicaoFinal.Valida()) {
+				throw new IllegalArgumentException("Posicao invalida digite novamente");
+			}
+			else if(caverna.getSala(posicaoFinal).toString().equals("B")) {
 				vivo = false;
 				pontos -= 1000;
 			}
-			else {
-				pontos += 500;
-				caverna.getSala(posicaoFinal).removerComponente("W");
+			else if(caverna.getSala(posicaoFinal).toString().equals("W") && equipado == false) {
+				vivo = false;
+				pontos -= 1000;
+			}
+			else if(caverna.getSala(posicaoFinal).toString().equals("W") && equipado == true) {
+				if(!combate()) {
+					vivo = false;
+					pontos -= 1000;
+				}
+				else {
+					pontos += 500;
+					caverna.getSala(posicaoFinal).removerComponente("W");
+				}
+			}
+			pontos -= 15;
+			if (equipado == true) {
+				pontos -= 100;
+				equipado = false;
 			}
 		}
-		pontos -= 15;
-		if (equipado == true) {
-			pontos -= 100;
-			equipado = false;
+		catch(IllegalArgumentException e) {
+			System.out.println("Voltando a jogada: " + e.getMessage());
 		}
 		return pontos;
 	}
@@ -77,7 +82,7 @@ public class Heroi extends Componente{
 	}
 	
 	public void pegarOuro() {
-		if(caverna.getSala(posicao).procurarComponente("O")) { // Caso haja o ouro na sala, ele é removido e o boolean de ouro do heroi é atualizado
+		if(caverna.getSala(posicao).procurarComponente("O")) { // Caso haja o ouro na sala, ele Ã© removido e o boolean de ouro do heroi Ã© atualizado
 			caverna.getSala(posicao).removerComponente("O"); 
 			ouro = true;
 		}
