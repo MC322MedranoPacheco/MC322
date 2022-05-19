@@ -77,7 +77,7 @@ public class ControleJogo {
 			}
 		}
 		catch(IllegalArgumentException e) {
-			System.out.println("Erro: " + e.getMessage())
+			System.out.println("Erro: " + e.getMessage());
 		}
 	}
 	
